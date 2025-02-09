@@ -2,20 +2,6 @@ export const notes = {
   flat: ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'],
   sharp: ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'],
 };
-export const noteFlat = [
-  'A',
-  'Bb',
-  'B',
-  'C',
-  'Db',
-  'D',
-  'Eb',
-  'E',
-  'F',
-  'Gb',
-  'G',
-  'Ab',
-];
 
 export const degrees = {
   flat: ['1', '♭2', '2', '♭3', '3', '4', '♭5', '5', '♭6', '6', '♭7', '7'],
