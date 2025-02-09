@@ -16,10 +16,15 @@ function getNoteName(openNote: string, fretIndex: number) {
 }
 
 export default function Home() {
+  const stringIndex = Array.from(
+    { length: numberOfStrings },
+    (_, stringIndex) => stringIndex
+  ).reverse();
+
   return (
     <div className="wrapper">
       <div className="fretboard">
-        {Array.from({ length: numberOfStrings }).map((_, stringIndex) => (
+        {stringIndex.map((stringIndex) => (
           <div className="string" key={stringIndex}>
             {Array.from({ length: numberOfFrets }).map((_, fretIndex) => (
               <div className="note-fret" key={fretIndex}>
