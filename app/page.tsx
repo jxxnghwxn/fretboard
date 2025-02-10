@@ -2,7 +2,7 @@
 import { notes, tunings, instruments, systems } from '@/app/lib/music';
 const selectedInstrument = 'guitar';
 const numberOfStrings: number = instruments[selectedInstrument].nbStrings;
-const numberOfFrets = 12;
+const numberOfFrets = 25;
 
 const selectedKey = 'C';
 const selectedSystem = systems.ionian.degree; // from user input
@@ -24,7 +24,7 @@ function getNoteName(openNoteName: string, fretIndex: number): string {
   return selectedNotesArray[noteIndex];
 }
 
-function getScaleNotesName(
+function getNotesinSystemName(
   key: string,
   system: number[],
   notesArray: string[]
@@ -34,7 +34,7 @@ function getScaleNotesName(
     (degree) => notesArray[(keyIndex + degree) % notesArray.length]
   );
 }
-const selectedNotes = getScaleNotesName(
+const selectedNotes = getNotesinSystemName(
   selectedKey,
   selectedSystem,
   selectedNotesArray
@@ -54,12 +54,13 @@ export default function Home() {
             <div className="string" key={stringIndex}>
               {Array.from({ length: numberOfFrets }).map((_, fretIndex) => {
                 const currentNote = getNoteName(openNoteName, fretIndex);
-                const isInScale = selectedNotes.includes(currentNote);
+                const isInSystem = selectedNotes.includes(currentNote);
                 return (
-                  <div className="note-fret" key={fretIndex}>
-                    <div className="note-name">
-                      {isInScale ? currentNote : ''}
-                    </div>
+                  <div
+                    className={`note-fret ${isInSystem ? 'inSystem' : ''}`}
+                    key={fretIndex}
+                  >
+                    <div className="note-name">{currentNote}</div>
                   </div>
                 );
               })}

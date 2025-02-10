@@ -84,17 +84,25 @@ body {
   border-left: 2px solid blue;
 }
 
+/* 모든 노트 공통 스타일 */
 .note-name {
   width: 1rem;
   height: 1rem;
-
   border-radius: 50%;
-  background-color: white;
-
-  /*flex box 가운데 정렬*/
   display: flex;
   justify-content: center;
   align-items: center;
-
   z-index: 2;
+}
+
+/* 스케일에 속한 노트 */
+.note-fret.inSystem .note-name {
+  background-color: gold;
+  color: black;
+}
+
+/* 스케일에 속하지 않은 노트 */
+.note-fret:not(.inSystem) .note-name {
+  background-color: gray;
+  color: white;
 }
