@@ -86,8 +86,8 @@ body {
 
 /* 모든 노트 공통 스타일 */
 .note-name {
-  width: 1rem;
-  height: 1rem;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -103,6 +103,6 @@ body {
 
 /* 스케일에 속하지 않은 노트 */
 .note-fret:not(.inSystem) .note-name {
-  background-color: gray;
+  background-color: rgb(69, 68, 68);
   color: white;
 }
