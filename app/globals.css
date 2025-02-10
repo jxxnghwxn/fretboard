@@ -80,7 +80,7 @@ body {
 }
 .note-fret:first-child:before {
   background-color: var(--fretboard-color);
-  z-index: 3;
+  z-index: 2;
   border-left: 2px solid blue;
 }
 
@@ -92,7 +92,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* 스케일에 속한 노트 */
