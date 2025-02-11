@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@theme {
+  --spacing: 10px;
+}
 
 * {
   margin: 0;
@@ -105,4 +108,9 @@ body {
 .note-fret:not(.inSystem) .note-name {
   background-color: rgb(69, 68, 68);
   color: white;
+}
+
+/* FretboardSet.tsx */
+.b * {
+  border: solid 2px green;
 }

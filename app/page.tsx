@@ -1,12 +1,11 @@
-import ControlCard from '@/app/component/FretboardSet';
-
-import Fretboard from '@/app/component/FretboardGet';
+import FretboardSet from '@/app/components/FretboardSet';
+import FretboardGet from '@/app/components/FretboardGet';
 
 export default function Home() {
   return (
     <div>
-      <ControlCard />
-      <Fretboard />
+      <FretboardSet />
+      <FretboardGet />
     </div>
   );
 }
