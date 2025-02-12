@@ -9,10 +9,10 @@ export const degrees = {
 };
 
 export const instruments = {
-  guitar: { name: 'Guitar', nbStrings: 6 },
-  guitar_7: { name: '7-string guitar', nbStrings: 7 },
-  bass: { name: 'Bass', nbStrings: 4 },
-  bass_5: { name: '5-string bass', nbStrings: 5 },
+  guitar: { label: 'Guitar', nbStrings: 6 },
+  guitar_7: { label: '7-string guitar', nbStrings: 7 },
+  bass: { label: 'Bass', nbStrings: 4 },
+  bass_5: { label: '5-string bass', nbStrings: 5 },
 };
 
 export const tunings = {
@@ -34,19 +34,19 @@ export const tunings = {
 
 export const systems = {
   chromatic: {
-    name: 'Chromatic',
+    label: 'Chromatic',
     degree: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
   },
-  ionian: { name: 'Ionian', degree: [0, 2, 4, 5, 7, 9, 11] },
-  dordan: { name: 'Dorian', degree: [0, 2, 3, 5, 7, 9, 10] },
-  phrygian: { name: 'Phrygian', degree: [0, 1, 3, 5, 7, 8, 10] },
-  lydian: { name: 'Lydian', degree: [0, 2, 4, 6, 7, 9, 11] },
-  mixolydian: { name: 'Mixolydian', degree: [0, 2, 4, 5, 7, 9, 10] },
-  aeolian: { name: 'Aeolian', degree: [0, 2, 3, 5, 7, 8, 10] },
-  locrian: { name: 'Locrian', degree: [0, 1, 3, 5, 6, 8, 10] },
-  majorPentatonic: { name: 'Major Pentatonic', degree: [0, 2, 4, 7, 9] },
-  minorPentatonic: { name: 'Minor Pentatonic', degree: [0, 3, 5, 7, 10] },
-  blues: { name: 'Blues', degree: [0, 3, 5, 6, 7, 10] },
-  harmonicMinor: { name: 'Harmonic Minor', degree: [0, 2, 3, 5, 7, 8, 11] },
-  melodicMinor: { name: 'Melodic Minor', degree: [0, 2, 3, 5, 7, 9, 11] },
+  ionian: { label: 'Ionian', degree: [0, 2, 4, 5, 7, 9, 11] },
+  dordan: { label: 'Dorian', degree: [0, 2, 3, 5, 7, 9, 10] },
+  phrygian: { label: 'Phrygian', degree: [0, 1, 3, 5, 7, 8, 10] },
+  lydian: { label: 'Lydian', degree: [0, 2, 4, 6, 7, 9, 11] },
+  mixolydian: { label: 'Mixolydian', degree: [0, 2, 4, 5, 7, 9, 10] },
+  aeolian: { label: 'Aeolian', degree: [0, 2, 3, 5, 7, 8, 10] },
+  locrian: { label: 'Locrian', degree: [0, 1, 3, 5, 6, 8, 10] },
+  majorPentatonic: { label: 'Major Pentatonic', degree: [0, 2, 4, 7, 9] },
+  minorPentatonic: { label: 'Minor Pentatonic', degree: [0, 3, 5, 7, 10] },
+  blues: { label: 'Blues', degree: [0, 3, 5, 6, 7, 10] },
+  harmonicMinor: { label: 'Harmonic Minor', degree: [0, 2, 3, 5, 7, 8, 11] },
+  melodicMinor: { label: 'Melodic Minor', degree: [0, 2, 3, 5, 7, 9, 11] },
 };

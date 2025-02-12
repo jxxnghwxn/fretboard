@@ -45,19 +45,19 @@ export default function fretboard() {
   return (
     <div className="wrapper">
       <div className="fretboard">
-        {stringIndexes.map((stringIndex) => {
-          const openNoteName = selectedTuning[stringIndex];
+        {stringIndexes.map((stringIdx) => {
+          const openNoteName = selectedTuning[stringIdx];
           return (
-            <div className="string" key={stringIndex}>
-              {Array.from({ length: numberOfFrets }).map((_, fretIndex) => {
-                const currentNote = getNoteName(openNoteName, fretIndex);
+            <div className="string" key={stringIdx}>
+              {Array.from({ length: numberOfFrets }).map((_, fretIdx) => {
+                const currentNote = getNoteName(openNoteName, fretIdx);
                 const isInSystem = selectedNotes.includes(currentNote);
                 return (
                   <div
-                    className={`note-fret ${isInSystem ? 'inSystem' : ''}`}
-                    key={fretIndex}
+                    className={`noteFret ${isInSystem ? 'inSystem' : ''}`}
+                    key={fretIdx}
                   >
-                    <div className="note-name">{currentNote}</div>
+                    <div className="noteName">{currentNote}</div>
                   </div>
                 );
               })}

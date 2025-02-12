@@ -60,33 +60,33 @@ body {
   z-index: 1;
 }
 
-.note-fret {
+.noteFret {
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-.note-fret:first-child {
+.noteFret:first-child {
   flex: none;
   width: 5rem;
 }
 
-.note-fret:before {
+.noteFret:before {
   content: '';
   width: 100%;
   height: 100%;
   position: absolute;
   border-right: 2px solid blue;
 }
-.note-fret:first-child:before {
+.noteFret:first-child:before {
   background-color: var(--fretboard-color);
   z-index: 2;
   border-left: 2px solid blue;
 }
 
 /* 모든 노트 공통 스타일 */
-.note-name {
+.noteName {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 50%;
@@ -97,18 +97,13 @@ body {
 }
 
 /* 스케일에 속한 노트 */
-.note-fret.inSystem .note-name {
+.noteFret.inSystem .noteName {
   background-color: gold;
   color: black;
 }
 
 /* 스케일에 속하지 않은 노트 */
-.note-fret:not(.inSystem) .note-name {
+.noteFret:not(.inSystem) .noteName {
   background-color: rgb(69, 68, 68);
   color: white;
-}
-
-/* FretboardSet.tsx */
-.layout-item {
-  border: solid 2px green;
 }
