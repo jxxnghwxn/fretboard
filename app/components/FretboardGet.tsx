@@ -1,15 +1,12 @@
 // import Image from 'next/image';
-import { notes, tunings, instruments, systems } from '@/app/lib/music';
+import { tunings, instruments, systems } from '@/app/lib/music';
+import { selectedNotesArray } from '@/app/lib/constant';
 const selectedInstrument = 'guitar';
 const numberOfStrings: number = instruments[selectedInstrument].nbStrings;
 const numberOfFrets = 25;
 
 const selectedKey = 'C';
 const selectedSystem = systems.ionian.degree; // from user input
-
-const selectedAccidental = '♭'; // or '♯'
-const selectedNotesArray =
-  selectedAccidental === '♭' ? notes.flat : notes.sharp;
 
 const selectedTuning = tunings[selectedInstrument].standard; // from user input
 

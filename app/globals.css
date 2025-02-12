@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 @theme {
   --spacing: 10px;
 }
@@ -111,6 +109,6 @@ body {
 }
 
 /* FretboardSet.tsx */
-.b * {
+.layout-item {
   border: solid 2px green;
 }

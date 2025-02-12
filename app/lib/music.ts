@@ -7,18 +7,29 @@ export const degrees = {
   flat: ['1', '♭2', '2', '♭3', '3', '4', '♭5', '5', '♭6', '6', '♭7', '7'],
   sharp: ['1', '♯1', '2', '♯2', '3', '4', '♯4', '5', '♯5', '6', '♯6', '7'],
 };
+
+export const instruments = {
+  guitar: { name: 'Guitar', nbStrings: 6 },
+  guitar_7: { name: '7-string guitar', nbStrings: 7 },
+  bass: { name: 'Bass', nbStrings: 4 },
+  bass_5: { name: '5-string bass', nbStrings: 5 },
+};
+
 export const tunings = {
   guitar: {
     standard: ['E', 'A', 'D', 'G', 'B', 'E'],
+    drop_d: ['D', 'A', 'D', 'G', 'A', 'D'],
+  },
+  guitar_7: {
+    standard: ['B', 'E', 'A', 'D', 'G', 'B', 'E'],
   },
   bass: {
     standard: ['E', 'A', 'D', 'G'],
   },
-};
-
-export const instruments = {
-  guitar: { name: 'Guitar', nbStrings: 6 },
-  bass: { name: 'Bass', nbStrings: 4 },
+  bass_5: {
+    standard: ['B', 'E', 'A', 'D', 'G'],
+    standard_high: ['E', 'A', 'D', 'G', 'C'],
+  },
 };
 
 export const systems = {
