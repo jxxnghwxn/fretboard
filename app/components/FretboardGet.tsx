@@ -1,6 +1,9 @@
 // import Image from 'next/image';
 import { tunings, instruments, systems } from '@/app/lib/music';
 import { selectedNotesArray } from '@/app/lib/constant';
+
+import style from '@/app/styles/FretboardGet.module.css';
+
 const selectedInstrument = 'guitar';
 const numberOfStrings: number = instruments[selectedInstrument].nbStrings;
 const numberOfFrets = 25;
@@ -37,27 +40,29 @@ const selectedNotes = getNotesinSystemName(
   selectedNotesArray
 );
 
-export default function fretboard() {
+export default function FretboardGet() {
   const stringIndexes = Array.from(
     { length: numberOfStrings },
     (_, stringIndex) => stringIndex
   ).reverse();
   return (
-    <div className="wrapper">
-      <div className="fretboard">
+    <div className={style.wrapper}>
+      <div className={style.fretboard}>
         {stringIndexes.map((stringIdx) => {
           const openNoteName = selectedTuning[stringIdx];
           return (
-            <div className="string" key={stringIdx}>
+            <div className={style.string} key={stringIdx}>
               {Array.from({ length: numberOfFrets }).map((_, fretIdx) => {
                 const currentNote = getNoteName(openNoteName, fretIdx);
                 const isInSystem = selectedNotes.includes(currentNote);
                 return (
                   <div
-                    className={`noteFret ${isInSystem ? 'inSystem' : ''}`}
+                    className={`${style.noteFret} ${
+                      isInSystem ? style.inSystem : ''
+                    }`}
                     key={fretIdx}
                   >
-                    <div className="noteName">{currentNote}</div>
+                    <div className={style.noteName}>{currentNote}</div>
                   </div>
                 );
               })}
