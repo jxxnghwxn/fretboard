@@ -2,7 +2,7 @@
 import { tunings, instruments, systems } from '@/app/lib/music';
 import { selectedNotesArray } from '@/app/lib/constant';
 
-import style from '@/app/styles/FretboardGet.module.css';
+import s from '@/app/styles/FretboardGet.module.css';
 
 const selectedInstrument = 'guitar';
 const numberOfStrings: number = instruments[selectedInstrument].nbStrings;
@@ -46,23 +46,21 @@ export default function FretboardGet() {
     (_, stringIndex) => stringIndex
   ).reverse();
   return (
-    <div className={style.wrapper}>
-      <div className={style.fretboard}>
+    <div className={s.wrapper}>
+      <div className={s.fretboard}>
         {stringIndexes.map((stringIdx) => {
           const openNoteName = selectedTuning[stringIdx];
           return (
-            <div className={style.string} key={stringIdx}>
+            <div className={s.string} key={stringIdx}>
               {Array.from({ length: numberOfFrets }).map((_, fretIdx) => {
                 const currentNote = getNoteName(openNoteName, fretIdx);
                 const isInSystem = selectedNotes.includes(currentNote);
                 return (
                   <div
-                    className={`${style.noteFret} ${
-                      isInSystem ? style.inSystem : ''
-                    }`}
+                    className={`${s.noteFret} ${isInSystem ? s.inSystem : ''}`}
                     key={fretIdx}
                   >
-                    <div className={style.noteName}>{currentNote}</div>
+                    <div className={s.noteName}>{currentNote}</div>
                   </div>
                 );
               })}
