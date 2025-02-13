@@ -1,13 +1,20 @@
-import { notes, instruments, tunings, systems } from '@/app/lib/music';
-import { selectedNotesArray } from '../lib/constant';
+import { notes, instruments, tunings, systems } from '@/lib/music';
+// import { selectedNotesArray } from '@/lib/constant';
 
 // CSS
-import s from '@/app/styles/FretboardSet.module.css';
+import s from '@/styles/FretboardSet.module.css';
 
-export default function FretboardSet() {
+export default function FretboardSet({ settings, updateSetting }) {
+  const selectedNotesArray =
+    settings.accidental === 'flat' ? notes.flat : notes.sharp;
+  const notesArray = [
+    ...selectedNotesArray.slice(3),
+    ...selectedNotesArray.slice(0, 3),
+  ];
+
   return (
     <>
-      <div className={`${s.container} grid`}>
+      <div className={`${s.container} grid grid-cols-3 gird-rows-4`}>
         {/*instrument and tuning*/}
         <div className={`${s.item}`}>
           <div>
@@ -18,12 +25,31 @@ export default function FretboardSet() {
           </div>
         </div>
         {/*accidental and note*/}
-        <div className={`${s.item}`}>
+        <div className={`${s.item} col-span-2`}>
           <div>
-            <label htmlFor="accidental"></label>
+            <label className={`hidden`}>accidental</label>
+            <div>
+              <div
+                onClick={() => updateSetting('accidental', 'flat')}
+                className={`cursor-pointer`}
+              >
+                ♭
+              </div>
+              <div
+                onClick={() => updateSetting('accidental', 'sharp')}
+                className={`cursor-pointer`}
+              >
+                ♯
+              </div>
+            </div>
           </div>
           <div>
             <label htmlFor="note"></label>
+            <div className={`flex`}>
+              {notesArray.map((note, idx) => (
+                <div key={idx}>{note}</div>
+              ))}
+            </div>
           </div>
         </div>
         {/*chord or sclae*/}
@@ -37,19 +63,19 @@ export default function FretboardSet() {
         {/*fingering system*/}
         <div className={`${s.item}`}>
           <label htmlFor="fingerSystem">fingering system</label>
-          <select name="" id="fingerSystem">
-            <option value="CAGED">CAGED</option>
-            <option value="3NPS">3NPS</option>
-            <option value="All">ALL</option>
-          </select>
+          <div>
+            <div>CAGED</div>
+            <div>3NPS</div>
+            <div>ALL</div>
+          </div>
         </div>
         {/*number of fret*/}
         <div className={`${s.item}`}>
-          <label htmlFor="number of fret"></label>
+          <label htmlFor="number of fret">number of fret</label>
         </div>
         {/*fret marker*/}
-        <div className={`${s.item}`}>
-          <label htmlFor="fretmarker"></label>
+        <div className={`${s.item} col-span-2`}>
+          <label htmlFor="fretmarker">fretmarkder</label>
         </div>
       </div>
 
