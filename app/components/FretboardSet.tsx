@@ -3,6 +3,7 @@ import { notes, instruments, tunings, systems } from '@/lib/music';
 
 // CSS
 import s from '@/styles/FretboardSet.module.css';
+import RangeSlider from './RangeSlider';
 
 export default function FretboardSet({ settings, updateSetting }) {
   const selectedNotesArray =
@@ -14,14 +15,14 @@ export default function FretboardSet({ settings, updateSetting }) {
 
   return (
     <>
-      <div className={`${s.container} grid grid-cols-3 gird-rows-4`}>
+      <div className={`${s.container} grid grid-cols-3 gird-rows-4 gap-2`}>
         {/*instrument and tuning*/}
         <div className={`${s.item}`}>
           <div>
-            <label htmlFor="instrument"></label>
+            <label htmlFor='instrument'></label>
           </div>
           <div>
-            <label htmlFor="tuning"></label>
+            <label htmlFor='tuning'></label>
           </div>
         </div>
         {/*accidental and note*/}
@@ -44,7 +45,7 @@ export default function FretboardSet({ settings, updateSetting }) {
             </div>
           </div>
           <div>
-            <label htmlFor="note"></label>
+            <label htmlFor='note'></label>
             <div className={`flex`}>
               {notesArray.map((note, idx) => (
                 <div key={idx}>{note}</div>
@@ -54,15 +55,15 @@ export default function FretboardSet({ settings, updateSetting }) {
         </div>
         {/*chord or sclae*/}
         <div className={`${s.item}`}>
-          <label htmlFor=""></label>
+          <label htmlFor=''></label>
         </div>
         {/*specific chord or scale*/}
         <div className={`${s.item}`}>
-          <label htmlFor="system"></label>
+          <label htmlFor='system'></label>
         </div>
         {/*fingering system*/}
         <div className={`${s.item}`}>
-          <label htmlFor="fingerSystem">fingering system</label>
+          <label htmlFor='fingerSystem'>fingering system</label>
           <div>
             <div>CAGED</div>
             <div>3NPS</div>
@@ -71,11 +72,12 @@ export default function FretboardSet({ settings, updateSetting }) {
         </div>
         {/*number of fret*/}
         <div className={`${s.item}`}>
-          <label htmlFor="number of fret">number of fret</label>
+          <label htmlFor='number of fret'>number of fret</label>
+          <RangeSlider />
         </div>
         {/*fret marker*/}
         <div className={`${s.item} col-span-2`}>
-          <label htmlFor="fretmarker">fretmarkder</label>
+          <label htmlFor='fretmarker'>fretmarkder</label>
         </div>
       </div>
 
