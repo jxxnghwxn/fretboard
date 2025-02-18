@@ -73,7 +73,7 @@ export default function FretboardSet({ settings, updateSetting }) {
         {/*number of fret*/}
         <div className={`${s.item}`}>
           <label htmlFor='number of fret'>number of fret</label>
-          <RangeSlider />
+          <RangeSlider settings={settings} updateSetting={updateSetting} />
         </div>
         {/*fret marker*/}
         <div className={`${s.item} col-span-2`}>
