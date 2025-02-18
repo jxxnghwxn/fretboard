@@ -1,34 +1,27 @@
 // import Image from 'next/image';
-import { notes, tunings, instruments, systems } from '@/lib/music';
-
-import FretboardSet from './FretboardSet';
+import { notes, instruments, systems, tunings } from '@/lib/music';
 
 import s from '@/styles/FretboardGet.module.css';
-
-// 나중에 타입 추가할때
-// import { Settings } from '@/types'; // 경로에 맞게 수정
 
 // interface FretboardGetProps {
 //   settings: Settings;
 // }
-
-const selectedInstrument = 'guitar';
-const selectedTuning = tunings[selectedInstrument].standard; // from user input
-const numberOfStrings: number = instruments[selectedInstrument].nbStrings;
-const numberOfFrets = 25;
-
-const selectedKey = 'C';
-const selectedSystem = systems.ionian.degree; // from user input
 
 // function getOpenNotesIndex(): number[] {
 //   const tuning = tunings[selectedInstrument].standard; // from user input
 //   return tuning.map((note: string) => selectedNotesArray.indexOf(note));
 // }
 
-export default function FretboardGet({ settings }) {
-  const selectedAccidental = settings.accidental;
+export default function FretboardGet({ fretState }) {
+  const numberOfStrings: number = instruments[fretState.instrument].nbStrings;
+  const [fretStart, fretEnd] = fretState.fretRange;
+  const numberOfFrets = fretEnd - fretStart + 1;
+
+  const selectedKey = fretState.key;
+  const selectedSystem = systems[fretState.system].degree; // from user input
+
   const selectedNotesArray =
-    selectedAccidental === 'flat' ? notes.flat : notes.sharp;
+    fretState.accidental === 'flat' ? notes.flat : notes.sharp;
 
   function getNoteName(openNoteName: string, fretIndex: number): string {
     const openNoteIndex = selectedNotesArray.indexOf(openNoteName);
@@ -54,17 +47,28 @@ export default function FretboardGet({ settings }) {
 
   const stringIndexes = Array.from(
     { length: numberOfStrings },
-    (_, stringIndex) => stringIndex
+    (_, stringIdx) => stringIdx
   ).reverse();
 
   return (
     <div className={s.wrapper}>
       <div className={s.fretboard}>
         {stringIndexes.map((stringIdx) => {
-          const openNoteName = selectedTuning[stringIdx];
+          const openNoteName =
+            tunings[fretState.instrument][fretState.tuning][stringIdx];
+          const isOpenInSystem = selectedNotes.includes(openNoteName);
           return (
             <div className={s.string} key={stringIdx}>
-              {Array.from({ length: numberOfFrets }).map((_, fretIdx) => {
+              <div
+                className={`${s.noteFret} ${isOpenInSystem ? s.inSystem : ''}`}
+              >
+                <div className={s.noteName}>{openNoteName}</div>
+              </div>
+
+              {Array.from({
+                length: numberOfFrets,
+              }).map((_, Idx) => {
+                const fretIdx = fretStart + Idx;
                 const currentNote = getNoteName(openNoteName, fretIdx);
                 const isInSystem = selectedNotes.includes(currentNote);
                 return (

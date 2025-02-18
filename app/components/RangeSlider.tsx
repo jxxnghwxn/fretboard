@@ -22,7 +22,7 @@ export default function RangeSlider({ settings, updateSetting }) {
         onChange={handleChange}
         valueLabelDisplay='auto'
         getAriaValueText={valuetext}
-        min={0}
+        min={1}
         max={24}
       />
     </Box>

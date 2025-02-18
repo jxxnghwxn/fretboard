@@ -5,9 +5,9 @@ import { notes, instruments, tunings, systems } from '@/lib/music';
 import s from '@/styles/FretboardSet.module.css';
 import RangeSlider from './RangeSlider';
 
-export default function FretboardSet({ settings, updateSetting }) {
+export default function FretboardSet({ fretState, updateFretState }) {
   const selectedNotesArray =
-    settings.accidental === 'flat' ? notes.flat : notes.sharp;
+    fretState.accidental === 'flat' ? notes.flat : notes.sharp;
   const notesArray = [
     ...selectedNotesArray.slice(3),
     ...selectedNotesArray.slice(0, 3),
@@ -25,19 +25,20 @@ export default function FretboardSet({ settings, updateSetting }) {
             <label htmlFor='tuning'></label>
           </div>
         </div>
+
         {/*accidental and note*/}
         <div className={`${s.item} col-span-2`}>
           <div>
             <label className={`hidden`}>accidental</label>
             <div>
               <div
-                onClick={() => updateSetting('accidental', 'flat')}
+                onClick={() => updateFretState('accidental', 'flat')}
                 className={`cursor-pointer`}
               >
                 ♭
               </div>
               <div
-                onClick={() => updateSetting('accidental', 'sharp')}
+                onClick={() => updateFretState('accidental', 'sharp')}
                 className={`cursor-pointer`}
               >
                 ♯
@@ -53,28 +54,33 @@ export default function FretboardSet({ settings, updateSetting }) {
             </div>
           </div>
         </div>
+
         {/*chord or sclae*/}
         <div className={`${s.item}`}>
           <label htmlFor=''></label>
         </div>
+
         {/*specific chord or scale*/}
         <div className={`${s.item}`}>
           <label htmlFor='system'></label>
         </div>
+
         {/*fingering system*/}
         <div className={`${s.item}`}>
           <label htmlFor='fingerSystem'>fingering system</label>
-          <div>
-            <div>CAGED</div>
-            <div>3NPS</div>
-            <div>ALL</div>
-          </div>
+          {/* <div>
+            <div onClick={updateFretState('fingerSystem', 'CAGED')}>CAGED</div>
+            <div onClick={updateFretState('fingerSystem', '3NPS')}>3NPS</div>
+            <div onClick={updateFretState('fingerSystem', 'ALL')}>ALL</div>
+          </div> */}
         </div>
+
         {/*number of fret*/}
         <div className={`${s.item}`}>
           <label htmlFor='number of fret'>number of fret</label>
-          <RangeSlider settings={settings} updateSetting={updateSetting} />
+          <RangeSlider settings={fretState} updateSetting={updateFretState} />
         </div>
+
         {/*fret marker*/}
         <div className={`${s.item} col-span-2`}>
           <label htmlFor='fretmarker'>fretmarkder</label>

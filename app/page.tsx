@@ -3,20 +3,20 @@ import { useReducer } from 'react';
 
 import FretboardSet from '@/components/FretboardSet';
 import FretboardGet from '@/components/FretboardGet';
-import { initialSettings, settingsReducer } from './lib/reducer';
+import { initFretState, fretStateReducer } from './lib/reducer';
 
 export default function Home() {
-  const [settings, dispatch] = useReducer(settingsReducer, initialSettings);
+  const [fretState, dispatch] = useReducer(fretStateReducer, initFretState);
 
-  const updateSetting = (key, value) => {
+  const updateFretState = (key, value) => {
     dispatch({ type: 'UPDATE_SETTING', payload: { key, value } });
   };
 
   return (
     <div>
       <div>hello</div>
-      <FretboardSet settings={settings} updateSetting={updateSetting} />
-      <FretboardGet settings={settings} />
+      <FretboardSet fretState={fretState} updateFretState={updateFretState} />
+      <FretboardGet fretState={fretState} />
     </div>
   );
 }
