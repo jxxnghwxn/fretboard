@@ -3,8 +3,9 @@ interface FretState {
   tuning: string;
   accidental: 'flat' | 'sharp';
   key: string;
-  harmonySet: string;
-  system: string;
+  systemType: string;
+  scaleType: string;
+  chordType: string;
   fingerSystem: string;
   fretRange: [number, number];
   fretmarker: {
@@ -20,8 +21,9 @@ export const initFretState: FretState = {
   tuning: 'standard',
   accidental: 'flat',
   key: 'C',
-  harmonySet: 'scale',
-  system: 'ionian',
+  systemType: 'scale',
+  scaleType: 'ionian',
+  chordType: 'maj7',
   fingerSystem: '3NPS',
   fretRange: [1, 24],
   fretmarker: { note: 'note', degree: 'degree', none: 'none' },

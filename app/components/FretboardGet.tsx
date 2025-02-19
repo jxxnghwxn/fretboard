@@ -1,5 +1,5 @@
 // import Image from 'next/image';
-import { notes, instruments, systems, tunings } from '@/lib/music';
+import { notes, instruments, scaleTypes, tunings } from '@/lib/music';
 
 import s from '@/styles/FretboardGet.module.css';
 
@@ -18,7 +18,7 @@ export default function FretboardGet({ fretState }) {
   const numberOfFrets = fretEnd - fretStart + 1;
 
   const selectedKey = fretState.key;
-  const selectedSystem = systems[fretState.system].degree; // from user input
+  const selectedSystem = scaleTypes[fretState.scaleType].degree; // from user input
 
   const selectedNotesArray =
     fretState.accidental === 'flat' ? notes.flat : notes.sharp;

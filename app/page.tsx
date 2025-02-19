@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 
 import FretboardSet from '@/components/FretboardSet';
 import FretboardGet from '@/components/FretboardGet';
-import { initFretState, fretStateReducer } from './lib/reducer';
+import { initFretState, fretStateReducer } from './lib/FretState';
 
 export default function Home() {
   const [fretState, dispatch] = useReducer(fretStateReducer, initFretState);
