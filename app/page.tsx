@@ -14,7 +14,6 @@ export default function Home() {
 
   return (
     <div>
-      <div>hello</div>
       <FretboardSet fretState={fretState} updateFretState={updateFretState} />
       <FretboardGet fretState={fretState} />
     </div>

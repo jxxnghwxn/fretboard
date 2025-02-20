@@ -17,7 +17,7 @@ export default function RangeSlider({ settings, updateSetting }) {
   return (
     <Box sx={{ width: 300 }}>
       <Slider
-        getAriaLabel={() => 'Temperature range'}
+        getAriaLabel={() => 'Fret range'}
         value={value}
         onChange={handleChange}
         valueLabelDisplay='auto'

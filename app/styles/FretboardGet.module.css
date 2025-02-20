@@ -76,3 +76,8 @@
   background-color: rgb(69, 68, 68);
   color: white;
 }
+/* 최종 보여주는 노트 */
+.noteFret.inView .noteName {
+  background-color: gold;
+  color: black;
+}

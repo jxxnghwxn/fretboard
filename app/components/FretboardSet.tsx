@@ -33,7 +33,7 @@ export default function FretboardSet({ fretState, updateFretState }) {
 
   return (
     <>
-      <div className={`${s.container} grid grid-cols-3 gird-rows-4 gap-2`}>
+      <div className={`${s.container} grid grid-cols-3 gird-rows-4 gap-1`}>
         {/*instrument and tuning*/}
         <div className={`${s.item}`}>
           <div>
@@ -69,36 +69,42 @@ export default function FretboardSet({ fretState, updateFretState }) {
             </select>
           </div>
         </div>
-
         {/*accidental and note*/}
         <div className={`${s.item} col-span-2`}>
-          <div>
-            <div className={`hidden`}>accidental</div>
+          <div className={`flex gap-1 `}>
             <div>
-              <div
-                onClick={() => updateFretState('accidental', 'flat')}
-                className={`cursor-pointer`}
-              >
-                ♭
-              </div>
-              <div
-                onClick={() => updateFretState('accidental', 'sharp')}
-                className={`cursor-pointer`}
-              >
-                ♯
+              <div className={`hidden`}>accidental</div>
+              <div className={`flex gap-0.5 justify-center items-center`}>
+                <div
+                  onClick={() => updateFretState('accidental', 'flat')}
+                  className={`cursor-pointer border h-4 w-4`}
+                >
+                  ♭
+                </div>
+                <div
+                  onClick={() => updateFretState('accidental', 'sharp')}
+                  className={`cursor-pointer border h-4 w-4`}
+                >
+                  ♯
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <div className={`hidden`}>note</div>
-            <div className={`flex`}>
-              {notesArray.map((note, idx) => (
-                <div key={idx}>{note}</div>
-              ))}
+            <div>
+              <div className={`hidden`}>note</div>
+              <div className={`flex gap-0.5 justify-center items-center`}>
+                {notesArray.map((note, idx) => (
+                  <div
+                    key={idx}
+                    className={`cursor-pointer border h-4 w-4 text-center`}
+                    onClick={() => updateFretState('key', `${note}`)}
+                  >
+                    {note}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-
         {/*system type*/}
         <div className={`${s.item}`}>
           <div className={`hidden`}></div>
@@ -111,7 +117,6 @@ export default function FretboardSet({ fretState, updateFretState }) {
             </div>
           </div>
         </div>
-
         {/*scale type, chord type*/}
         <div className={`${s.item}`}>
           <div className={`hidden`}></div>
@@ -138,7 +143,6 @@ export default function FretboardSet({ fretState, updateFretState }) {
             ))}
           </select>
         </div>
-
         {/*fingering system*/}
         <div className={`${s.item}`}>
           <div htmlFor='fingerSystem'>fingering system</div>
@@ -154,15 +158,33 @@ export default function FretboardSet({ fretState, updateFretState }) {
             </div>
           </div>
         </div>
-
         {/*number of fret*/}
         <div className={`${s.item}`}>
           <div>number of fret</div>
           <RangeSlider settings={fretState} updateSetting={updateFretState} />
         </div>
 
+        {/*Position*/}
+        <div className={`${s.item}`}>
+          <div>Position</div>
+          {fretState.fingerSystem === '3NPS' && (
+            <div className={`flex gap-1 justify-center items-center`}>
+              {Array.from({ length: 7 }, (_, i) => (
+                <div
+                  key={i}
+                  className={`border h-3 w-3 rounded-full cursor-pointer`}
+                  onClick={() => updateFretState('fingerPosition', i + 1)}
+                >
+                  <div className={`flex justify-center align-center`}>
+                    {i + 1}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         {/*fret marker*/}
-        <div className={`${s.item} col-span-2`}>
+        <div className={`${s.item}`}>
           <div>fretmarkder</div>
         </div>
       </div>

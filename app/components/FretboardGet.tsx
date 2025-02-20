@@ -29,13 +29,36 @@ export default function FretboardGet({ fretState }) {
     return selectedNotesArray[noteIndex];
   }
 
-  const selectedNotes = selectedSystem.map(
+  const selectedNotesInSystem = selectedSystem.map(
     (degree) =>
       selectedNotesArray[
         (selectedNotesArray.indexOf(selectedKey) + degree) %
           selectedNotesArray.length
       ]
   );
+
+  const getTnpsPos = (pos): number[][] => {
+    return Array.from({ length: 6 }, (_, i) => {
+      return [
+        ((((i + 6) * 3) % 7) + pos - 1) % 7,
+        ((((i + 6) * 3 + 1) % 7) + pos - 1) % 7,
+        ((((i + 6) * 3 + 2) % 7) + pos - 1) % 7,
+      ];
+    });
+  };
+
+  // tnpsPos() 결과를 JSON 형식으로 출력
+  const tnpsPos = getTnpsPos();
+  console.log(JSON.stringify(tnpsPos, null, 2));
+
+  const tnps = [
+    [4, 5, 6],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 0, 1],
+    [2, 3, 4],
+    [5, 6, 0],
+  ];
 
   const stringIndexes = Array.from(
     { length: numberOfStrings },
@@ -44,11 +67,16 @@ export default function FretboardGet({ fretState }) {
 
   return (
     <div className={s.wrapper}>
+      <div>
+        <h3>Selected Notes in System</h3>
+        <p>{JSON.stringify(selectedNotesInSystem)}</p>
+      </div>
       <div className={s.fretboard}>
         {stringIndexes.map((stringIdx) => {
           const openNoteName =
             tunings[fretState.instrument][fretState.tuning][stringIdx];
-          const isOpenInSystem = selectedNotes.includes(openNoteName);
+          const isOpenInSystem = selectedNotesInSystem.includes(openNoteName);
+
           return (
             <div className={s.string} key={stringIdx}>
               <div
@@ -62,10 +90,14 @@ export default function FretboardGet({ fretState }) {
               }).map((_, Idx) => {
                 const fretIdx = fretStart + Idx;
                 const currentNote = getNoteName(openNoteName, fretIdx);
-                const isInSystem = selectedNotes.includes(currentNote);
+                const isInSystem = selectedNotesInSystem.includes(currentNote);
+                const isInPos = getTnpsPos(fretState.fingerPosition)
+                  [stringIdx].map((tnpsIdx) => selectedNotesInSystem[tnpsIdx])
+                  .includes(currentNote);
+
                 return (
                   <div
-                    className={`${s.noteFret} ${isInSystem ? s.inSystem : ''}`}
+                    className={`${s.noteFret} ${isInPos ? s.inView : ''}`}
                     key={fretIdx}
                   >
                     <div className={s.noteName}>{currentNote}</div>

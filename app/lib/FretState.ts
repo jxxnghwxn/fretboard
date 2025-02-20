@@ -25,6 +25,7 @@ export const initFretState: FretState = {
   scaleType: 'ionian',
   chordType: 'maj7',
   fingerSystem: '3NPS',
+  fingerPosition: 1,
   fretRange: [1, 24],
   fretmarker: { note: 'note', degree: 'degree', none: 'none' },
 };
