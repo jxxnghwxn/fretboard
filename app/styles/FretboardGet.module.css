@@ -67,17 +67,18 @@
 
 /* 스케일에 속한 노트 */
 .noteFret.inSystem .noteName {
-  background-color: gold;
-  color: black;
+  background-color: #3d6cdb;
+  color: rgb(255, 255, 255);
 }
 
 /* 스케일에 속하지 않은 노트 */
 .noteFret:not(.inSystem) .noteName {
-  background-color: rgb(69, 68, 68);
-  color: white;
+  z-index: 4;
+  background-color: #4c5159;
+  color: rgb(65, 52, 52);
 }
 /* 최종 보여주는 노트 */
 .noteFret.inView .noteName {
-  background-color: gold;
-  color: black;
+  background-color: #2f5bc2;
+  color: rgb(255, 255, 255);
 }
