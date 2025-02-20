@@ -47,23 +47,33 @@ export default function FretboardGet({ fretState }) {
     });
   };
 
-  // tnpsPos() 결과를 JSON 형식으로 출력
-  const tnpsPos = getTnpsPos();
-  console.log(JSON.stringify(tnpsPos, null, 2));
-
-  const tnps = [
-    [4, 5, 6],
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 0, 1],
-    [2, 3, 4],
-    [5, 6, 0],
-  ];
+  const getCAGEDPos = (pos): number[][] => {
+    return Array.from({ length: 6 }, (_, i) => {
+      return [];
+    });
+  };
 
   const stringIndexes = Array.from(
     { length: numberOfStrings },
     (_, stringIdx) => stringIdx
   ).reverse();
+
+  const viewMode = (currentNote, stringIdx) => {
+    switch (fretState.fingerSystem) {
+      case 'ALL':
+        return selectedNotesInSystem.includes(currentNote);
+      case '3NPS':
+        return getTnpsPos(fretState.fingerPosition)
+          [stringIdx].map((tnpsIdx) => selectedNotesInSystem[tnpsIdx])
+          .includes(currentNote);
+      case 'CAGED':
+        return getCAGEDPos(fretState.fingerPosition)
+          [stringIdx].map((tnpsIdx) => selectedNotesInSystem[tnpsIdx])
+          .includes(currentNote);
+      default:
+        return false;
+    }
+  };
 
   return (
     <div className={s.wrapper}>
@@ -90,14 +100,13 @@ export default function FretboardGet({ fretState }) {
               }).map((_, Idx) => {
                 const fretIdx = fretStart + Idx;
                 const currentNote = getNoteName(openNoteName, fretIdx);
-                const isInSystem = selectedNotesInSystem.includes(currentNote);
-                const isInPos = getTnpsPos(fretState.fingerPosition)
-                  [stringIdx].map((tnpsIdx) => selectedNotesInSystem[tnpsIdx])
-                  .includes(currentNote);
+                const currentViewMode = viewMode(currentNote, stringIdx);
 
                 return (
                   <div
-                    className={`${s.noteFret} ${isInPos ? s.inView : ''}`}
+                    className={`${s.noteFret} ${
+                      currentViewMode ? s.inView : ''
+                    }`}
                     key={fretIdx}
                   >
                     <div className={s.noteName}>{currentNote}</div>

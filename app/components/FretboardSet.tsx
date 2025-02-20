@@ -33,7 +33,9 @@ export default function FretboardSet({ fretState, updateFretState }) {
 
   return (
     <>
-      <div className={`${s.container} grid grid-cols-3 gird-rows-4 gap-1`}>
+      <div
+        className={`${s.container} grid grid-cols-3 gird-rows-3 gap-x-1 gap-y-1`}
+      >
         {/*instrument and tuning*/}
         <div className={`${s.item}`}>
           <div>
@@ -69,6 +71,7 @@ export default function FretboardSet({ fretState, updateFretState }) {
             </select>
           </div>
         </div>
+
         {/*accidental and note*/}
         <div className={`${s.item} col-span-2`}>
           <div className={`flex gap-1 `}>
@@ -108,12 +111,18 @@ export default function FretboardSet({ fretState, updateFretState }) {
         {/*system type*/}
         <div className={`${s.item}`}>
           <div className={`hidden`}></div>
-          <div>
-            <div onClick={() => updateFretState('systemType', 'chord')}>
-              chord
+          <div className={`flex gap-1 justify-center items-center`}>
+            <div
+              className={`cursor-pointer`}
+              onClick={() => updateFretState('systemType', 'chord')}
+            >
+              <div>chord</div>
             </div>
-            <div onClick={() => updateFretState('systemType', 'scale')}>
-              scale
+            <div
+              className={`cursor-pointer`}
+              onClick={() => updateFretState('systemType', 'scale')}
+            >
+              <div>scale</div>
             </div>
           </div>
         </div>
@@ -145,15 +154,25 @@ export default function FretboardSet({ fretState, updateFretState }) {
         </div>
         {/*fingering system*/}
         <div className={`${s.item}`}>
-          <div htmlFor='fingerSystem'>fingering system</div>
-          <div>
-            <div onClick={() => updateFretState('fingerSystem', 'CAGED')}>
-              CAGED
-            </div>
-            <div onClick={() => updateFretState('fingerSystem', '3NPS')}>
+          <div>fingering system</div>
+          <div className={`flex gap-1 justify-center items-center`}>
+            <div
+              className={`cursor-pointer`}
+              onClick={() => updateFretState('fingerSystem', '3NPS')}
+            >
               3NPS
             </div>
-            <div onClick={() => updateFretState('fingerSystem', 'ALL')}>
+            <div
+              className={`cursor-pointer`}
+              onClick={() => updateFretState('fingerSystem', 'CAGED')}
+            >
+              CAGED
+            </div>
+
+            <div
+              className={`cursor-pointer`}
+              onClick={() => updateFretState('fingerSystem', 'ALL')}
+            >
               ALL
             </div>
           </div>
@@ -170,6 +189,22 @@ export default function FretboardSet({ fretState, updateFretState }) {
           {fretState.fingerSystem === '3NPS' && (
             <div className={`flex gap-1 justify-center items-center`}>
               {Array.from({ length: 7 }, (_, i) => (
+                <div
+                  key={i}
+                  className={`border h-3 w-3 rounded-full cursor-pointer`}
+                  onClick={() => updateFretState('fingerPosition', i + 1)}
+                >
+                  <div className={`flex justify-center align-center`}>
+                    {i + 1}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {fretState.fingerSystem === 'CAGED' && (
+            <div className={`flex gap-1 justify-center items-center`}>
+              {Array.from({ length: 5 }, (_, i) => (
                 <div
                   key={i}
                   className={`border h-3 w-3 rounded-full cursor-pointer`}
