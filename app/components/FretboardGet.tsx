@@ -29,20 +29,12 @@ export default function FretboardGet({ fretState }) {
     return selectedNotesArray[noteIndex];
   }
 
-  function getNotesinSystemName(
-    key: string,
-    system: number[],
-    notesArray: string[]
-  ): string[] {
-    const keyIndex = notesArray.indexOf(key); //key 3
-    return system.map(
-      (degree) => notesArray[(keyIndex + degree) % notesArray.length]
-    );
-  }
-  const selectedNotes = getNotesinSystemName(
-    selectedKey,
-    selectedSystem,
-    selectedNotesArray
+  const selectedNotes = selectedSystem.map(
+    (degree) =>
+      selectedNotesArray[
+        (selectedNotesArray.indexOf(selectedKey) + degree) %
+          selectedNotesArray.length
+      ]
   );
 
   const stringIndexes = Array.from(
