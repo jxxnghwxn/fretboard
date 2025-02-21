@@ -10,3 +10,8 @@
   background-color: #333333;
   height: 88px;
 }
+
+.selected {
+  background-color: #d84040;
+  color: white;
+}

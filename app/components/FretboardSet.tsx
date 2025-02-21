@@ -74,19 +74,23 @@ export default function FretboardSet({ fretState, updateFretState }) {
 
         {/*accidental and note*/}
         <div className={`${s.item} col-span-2`}>
-          <div className={`flex gap-1 `}>
+          <div className={`flex gap-1`}>
             <div>
               <div className={`hidden`}>accidental</div>
               <div className={`flex gap-0.5 justify-center items-center`}>
                 <div
                   onClick={() => updateFretState('accidental', 'flat')}
-                  className={`cursor-pointer border h-4 w-4`}
+                  className={`${
+                    fretState.accidental === 'flat' ? s.selected : ''
+                  } cursor-pointer border h-4 w-4 `}
                 >
                   ♭
                 </div>
                 <div
                   onClick={() => updateFretState('accidental', 'sharp')}
-                  className={`cursor-pointer border h-4 w-4`}
+                  className={`cursor-pointer border h-4 w-4  ${
+                    fretState.accidental === 'sharp' ? s.selected : ''
+                  }`}
                 >
                   ♯
                 </div>
@@ -98,7 +102,9 @@ export default function FretboardSet({ fretState, updateFretState }) {
                 {notesArray.map((note, idx) => (
                   <div
                     key={idx}
-                    className={`cursor-pointer border h-4 w-4 text-center`}
+                    className={`cursor-pointer border h-4 w-4 text-center ${
+                      fretState.key === note ? s.selected : ''
+                    }`}
                     onClick={() => updateFretState('key', `${note}`)}
                   >
                     {note}
@@ -157,20 +163,26 @@ export default function FretboardSet({ fretState, updateFretState }) {
           <div>fingering system</div>
           <div className={`flex gap-1 justify-center items-center`}>
             <div
-              className={`cursor-pointer`}
+              className={`cursor-pointer ${
+                fretState.fingerSystem === '3NPS' ? s.selected : ''
+              }`}
               onClick={() => updateFretState('fingerSystem', '3NPS')}
             >
               3NPS
             </div>
             <div
-              className={`cursor-pointer`}
+              className={`cursor-pointer ${
+                fretState.fingerSystem === 'CAGED' ? s.selected : ''
+              }`}
               onClick={() => updateFretState('fingerSystem', 'CAGED')}
             >
               CAGED
             </div>
 
             <div
-              className={`cursor-pointer`}
+              className={`cursor-pointer ${
+                fretState.fingerSystem === 'ALL' ? s.selected : ''
+              }`}
               onClick={() => updateFretState('fingerSystem', 'ALL')}
             >
               ALL
@@ -191,7 +203,9 @@ export default function FretboardSet({ fretState, updateFretState }) {
               {Array.from({ length: 7 }, (_, i) => (
                 <div
                   key={i}
-                  className={`border h-3 w-3 rounded-full cursor-pointer`}
+                  className={`border h-3 w-3 rounded-full cursor-pointer ${
+                    fretState.fingerPosition === i + 1 ? s.selected : ''
+                  }`}
                   onClick={() => updateFretState('fingerPosition', i + 1)}
                 >
                   <div className={`flex justify-center align-center`}>
@@ -207,7 +221,9 @@ export default function FretboardSet({ fretState, updateFretState }) {
               {Array.from({ length: 5 }, (_, i) => (
                 <div
                   key={i}
-                  className={`border h-3 w-3 rounded-full cursor-pointer`}
+                  className={`border h-3 w-3 rounded-full cursor-pointer ${
+                    fretState.fingerPosition === i + 1 ? s.selected : ''
+                  }`}
                   onClick={() => updateFretState('fingerPosition', i + 1)}
                 >
                   <div className={`flex justify-center align-center`}>
