@@ -13,17 +13,8 @@ import s from '@/styles/FretboardSet.module.css';
 
 // other Components
 import RangeSlider from './RangeSlider';
-// import PopUpSelectSystem from './PopUpSelectSystem';
 
 export default function FretboardSet({ fretState, updateFretState }) {
-  // const [popUpIsOpen, setPopUpIsOpen] = useState(false);
-  // const openPopUp = () => {
-  //   setPopUpIsOpen(true);
-  // };
-  // const closePopUp = () => {
-  //   setPopUpIsOpen(false);
-  // };
-
   const selectedNotesArray =
     fretState.accidental === 'flat' ? notes.flat : notes.sharp;
   const notesArray = [
@@ -239,14 +230,6 @@ export default function FretboardSet({ fretState, updateFretState }) {
           <div>fretmarkder</div>
         </div>
       </div>
-
-      {/* <div className="temp">
-        <div htmlFor=""></div>
-        <select name="" id="">
-          <option value=""></option>
-          <option value=""></option>
-        </select>
-      </div> */}
     </>
   );
 }
