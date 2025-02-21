@@ -1,11 +1,12 @@
 ## Getting Started
 
-main content is showing 3nps system in major modes
+this is my first project of web
+i focused on showing all note in every scale
+and caged, 3nps scale in ionian scale,
+but mulfunction in mode scale. it will maybe add after.
 
 plan to update
 
-control caged, 3nps, all
+1. fix mulfuntion
 
-control showing scale degree or name
-
-highlight root, third, fifth, seventh, tension seperately
+2. highlight root, third, fifth, seventh, tension seperately

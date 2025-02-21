@@ -47,10 +47,52 @@ export default function FretboardGet({ fretState }) {
     });
   };
 
-  const getCAGEDPos = (pos): number[][] => {
-    return Array.from({ length: 6 }, (_, i) => {
-      return [];
-    });
+  const getCAGEDPos = (pos: number): number[][] => {
+    // CAGED 패턴에 맞는 음들
+    const patterns = {
+      1: [
+        [5, 6],
+        [7, 1, 2],
+        [3, 4, 5],
+        [6, 7, 1],
+        [2, 3, 4],
+        [5, 6],
+      ],
+      2: [
+        [6, 7, 1],
+        [2, 3, 4],
+        [5, 6],
+        [7, 1, 2],
+        [3, 4, 5],
+        [6, 7, 1],
+      ],
+      3: [
+        [7, 1, 2],
+        [3, 4, 5],
+        [6, 7, 1],
+        [2, 3, 4],
+        [5, 6],
+        [7, 1, 2],
+      ],
+      4: [
+        [2, 3, 4],
+        [5, 6],
+        [7, 1, 2],
+        [3, 4, 5],
+        [6, 7, 1],
+        [2, 3, 4],
+      ],
+      5: [
+        [3, 4, 5],
+        [6, 7, 1],
+        [2, 3, 4],
+        [5, 6],
+        [7, 1, 2],
+        [3, 4, 5],
+      ],
+    };
+
+    return patterns[pos];
   };
 
   const stringIndexes = Array.from(
@@ -68,7 +110,7 @@ export default function FretboardGet({ fretState }) {
           .includes(currentNote);
       case 'CAGED':
         return getCAGEDPos(fretState.fingerPosition)
-          [stringIdx].map((tnpsIdx) => selectedNotesInSystem[tnpsIdx])
+          [stringIdx].map((tnpsIdx) => selectedNotesInSystem[tnpsIdx - 1])
           .includes(currentNote);
       default:
         return false;
