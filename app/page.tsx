@@ -1,21 +1,21 @@
 'use client';
 import { useReducer } from 'react';
 
-import FretboardSet from '@/components/FretboardSet';
-import FretboardGet from '@/components/FretboardGet';
-import { initFretState, fretStateReducer } from './lib/FretState';
+import GetFretboard from './components/GetFretboard';
+import { fretboardReducer, InitFretboardState } from './lib/FretboardSettings';
+
+import FretboardGet from './components/FretboardGet';
 
 export default function Home() {
-  const [fretState, dispatch] = useReducer(fretStateReducer, initFretState);
-
-  const updateFretState = (key, value) => {
-    dispatch({ type: 'UPDATE_SETTING', payload: { key, value } });
-  };
+  const [fretboardState, updateFretboardState] = useReducer(
+    fretboardReducer,
+    InitFretboardState
+  );
 
   return (
     <div>
-      <FretboardSet fretState={fretState} updateFretState={updateFretState} />
-      <FretboardGet fretState={fretState} />
+      <GetFretboard fretboardState={fretboardState} />
+      {/* <FretboardGet fretboardState={fretboardState} /> */}
     </div>
   );
 }

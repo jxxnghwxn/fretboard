@@ -1,77 +1,78 @@
-export const notes = {
-  flat: ['A', 'B♭', 'B', 'C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭'],
-  sharp: ['A', 'A♯', 'B', 'C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯'],
+export const NOTES = {
+  FLAT: ['A', 'B♭', 'B', 'C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭'],
+  SHARP: ['A', 'A♯', 'B', 'C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯'],
 };
 
-export const degrees = {
-  flat: ['1', '♭2', '2', '♭3', '3', '4', '♭5', '5', '♭6', '6', '♭7', '7'],
-  sharp: ['1', '♯1', '2', '♯2', '3', '4', '♯4', '5', '♯5', '6', '♯6', '7'],
+export const DEGREES = {
+  FLAT: ['1', '♭2', '2', '♭3', '3', '4', '♭5', '5', '♭6', '6', '♭7', '7'],
+  SHARP: ['1', '♯1', '2', '♯2', '3', '4', '♯4', '5', '♯5', '6', '♯6', '7'],
 };
 
-export const instruments = {
-  guitar: { name: 'Guitar', nbStrings: 6 },
-  guitar_7: { name: '7-string guitar', nbStrings: 7 },
-  bass: { name: 'Bass', nbStrings: 4 },
-  bass_5: { name: '5-string bass', nbStrings: 5 },
+export const INSTRUMENTS = {
+  GUITAR_6S: { NAME: 'Guitar 6s', nbStrings: 6 },
+  GUITAR_7S: { NAME: 'Guitar 7s', nbStrings: 7 },
+  BASS_4S: { NAME: 'Bass 4s', nbStrings: 4 },
+  BASS_5S: { NAME: 'Bass 5s', nbStrings: 5 },
 };
 
-export const tunings = {
-  guitar: {
-    standard: ['E', 'A', 'D', 'G', 'B', 'E'],
-    drop_d: ['D', 'A', 'D', 'G', 'A', 'D'],
+export const TUNINGS = {
+  GUITAR_6S: {
+    STANDARD: ['E', 'A', 'D', 'G', 'B', 'E'],
+    DROP_D: ['D', 'A', 'D', 'G', 'A', 'D'],
   },
-  guitar_7: {
-    standard: ['B', 'E', 'A', 'D', 'G', 'B', 'E'],
+  GUITAR_7S: {
+    STANDARD: ['B', 'E', 'A', 'D', 'G', 'B', 'E'],
   },
-  bass: {
-    standard: ['E', 'A', 'D', 'G'],
+  BASS_4S: {
+    STANDARD: ['E', 'A', 'D', 'G'],
   },
-  bass_5: {
-    standard: ['B', 'E', 'A', 'D', 'G'],
-    standard_high: ['E', 'A', 'D', 'G', 'C'],
+  BASS_5S: {
+    STANDARD: ['B', 'E', 'A', 'D', 'G'],
+    STANDARD_HIGH: ['E', 'A', 'D', 'G', 'C'],
   },
 };
 
-export const scaleTypes = {
-  chromatic: {
-    name: 'Chromatic',
-    degree: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+export const SCALE_TYPES = {
+  CHROMATIC: {
+    NAME: 'Chromatic',
+    DEGREE: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
   },
-  majorPentatonic: { name: 'Major Pentatonic', degree: [0, 2, 4, 7, 9] },
-  minorPentatonic: { name: 'Minor Pentatonic', degree: [0, 3, 5, 7, 10] },
+  PENTATONIC_MAJOR: { NAME: 'Pentatonic Major', DEGREE: [1, 3, 5, 8, 10] },
+  PENTATONIC_MINOR: { NAME: 'Pentatonic Minor', DEGREE: [1, 4, 6, 8, 11] },
 
   // Major ( Minor )
-  ionian: { name: 'Ionian', degree: [0, 2, 4, 5, 7, 9, 11] },
-  dordan: { name: 'Dorian', degree: [0, 2, 3, 5, 7, 9, 10] },
-  phrygian: { name: 'Phrygian', degree: [0, 1, 3, 5, 7, 8, 10] },
-  lydian: { name: 'Lydian', degree: [0, 2, 4, 6, 7, 9, 11] },
-  mixolydian: { name: 'Mixolydian', degree: [0, 2, 4, 5, 7, 9, 10] },
-  aeolian: { name: 'Aeolian', degree: [0, 2, 3, 5, 7, 8, 10] },
-  locrian: { name: 'Locrian', degree: [0, 1, 3, 5, 6, 8, 10] },
+  IONIAN: { NAME: 'Ionian', DEGREE: [1, 3, 5, 6, 8, 10, 12] },
+  DORIAN: { NAME: 'Dorian', DEGREE: [1, 3, 4, 6, 8, 10, 11] },
+  PHRYGIAN: { NAME: 'Phrygian', DEGREE: [1, 2, 4, 6, 8, 9, 11] },
+  LYDIAN: { NAME: 'Lydian', DEGREE: [1, 3, 5, 7, 8, 10, 12] },
+  MIXOLYDIAN: { NAME: 'Mixolydian', DEGREE: [1, 3, 5, 6, 8, 10, 11] },
+  AEOLIAN: { NAME: 'Aeolian', DEGREE: [1, 3, 4, 6, 8, 9, 11] },
+  LOCRIAN: { NAME: 'Locrian', DEGREE: [1, 2, 4, 6, 7, 9, 11] },
   // Harmonic Minor
-  harmonicMinor: { name: 'Harmonic Minor', degree: [0, 2, 3, 5, 7, 8, 11] },
-  harmonicMinor2: { name: 'Lociran ♯6', degree: [0, 2, 3, 5, 7, 8, 11] },
-  harmonicMinor3: { name: 'Ionian ♯5', degree: [0, 1, 3, 5, 6, 9, 10] },
-  harmonicMinor4: { name: 'Dorian ♯4', degree: [0, 2, 3, 6, 7, 9, 10] },
-  harmonicMinor5: { name: 'Phrygian #3', degree: [0, 1, 4, 5, 7, 8, 10] },
-  harmonicMinor6: { name: 'Lydian ♯2', degree: [0, 3, 4, 6, 7, 9, 11] },
-  harmonicMinor7: { name: 'Locrian ♭4♭7', degree: [0, 1, 3, 4, 6, 8, 9] }, // **
+  HARMONIC_MINOR: { NAME: 'Harmonic Minor', DEGREE: [1, 3, 4, 6, 8, 9, 12] },
+  HARMONIC_MINOR_2: { NAME: 'Lociran ♯6', DEGREE: [1, 3, 4, 6, 8, 9, 12] },
+  HARMONIC_MINOR_3: { NAME: 'Ionian ♯5', DEGREE: [1, 2, 4, 6, 7, 10, 11] },
+  HARMONIC_MINOR_4: { NAME: 'Dorian ♯4', DEGREE: [1, 3, 4, 7, 8, 10, 11] },
+  HARMONIC_MINOR_5: { NAME: 'Phrygian #3', DEGREE: [1, 2, 5, 6, 8, 9, 11] },
+  HARMONIC_MINOR_6: { NAME: 'Lydian ♯2', DEGREE: [1, 4, 5, 7, 8, 10, 12] },
+  HARMONIC_MINOR_7: { NAME: 'Locrian ♭4♭7', DEGREE: [1, 2, 4, 5, 7, 9, 10] }, // **
   // Melodic Minor
-  melodicMinor: { name: 'Melodic Minor', degree: [0, 2, 3, 5, 7, 9, 11] },
-  melodicMinor2: { name: 'Dorian ♭2', degree: [0, 1, 3, 5, 7, 9, 10] },
-  melodicMinor3: { name: 'Lydian #5', degree: [0, 2, 4, 6, 8, 9, 11] }, // **
-  melodicMinor4: { name: 'Lydian ♭7', degree: [0, 2, 4, 6, 7, 9, 10] },
-  melodicMinor5: { name: 'Mixolydian ♭6', degree: [0, 2, 4, 5, 7, 8, 10] },
-  melodicMinor6: { name: 'Aeolian ♭5', degree: [0, 2, 3, 5, 6, 8, 10] },
-  melodicMinor7: { name: 'Locrian ♭4', degree: [0, 1, 3, 4, 6, 8, 10] },
+  MELODIC_MINOR: { NAME: 'Melodic Minor', DEGREE: [1, 3, 4, 6, 8, 10, 12] },
+  MELODIC_MINOR_2: { NAME: 'Dorian ♭2', DEGREE: [1, 2, 4, 6, 8, 10, 11] },
+  MELODIC_MINOR_3: { NAME: 'Lydian #5', DEGREE: [1, 3, 5, 7, 9, 10, 12] }, // **
+  MELODIC_MINOR_4: { NAME: 'Lydian ♭7', DEGREE: [1, 3, 5, 7, 8, 10, 11] },
+  MELODIC_MINOR_5: { NAME: 'Mixolydian ♭6', DEGREE: [1, 3, 5, 6, 8, 9, 11] },
+  MELODIC_MINOR_6: { NAME: 'Aeolian ♭5', DEGREE: [1, 3, 4, 6, 7, 9, 11] },
+  MELODIC_MINOR_7: { NAME: 'Locrian ♭4', DEGREE: [1, 2, 4, 5, 7, 9, 11] },
   // other
-  blues: { name: 'Blues', degree: [0, 3, 5, 6, 7, 10] },
+  BLUES_MAJOR: { NAME: 'Major Blues', DEGREE: [1, 3, 4, 5, 8, 10] },
+  BLUES_MINOR: { NAME: 'Minor Blues', DEGREE: [1, 4, 6, 7, 8, 11] },
 };
 
-export const chordTypes = {
-  maj: { name: 'major', degree: [0, 4, 7] },
-  min: { name: 'minor', degree: [0, 3, 7] },
-  maj7: { name: 'major7', degree: [0, 4, 7, 11] },
-  min7: { name: 'minor7', degree: [0, 3, , 7, 10] },
-  dom7: { name: '7', degree: [0, 4, 7, 10] },
+export const CHORD_TYPES = {
+  MAJ: { NAME: 'Major', DEGREE: [1, 3, 5] },
+  MIN: { NAME: 'Minor', DEGREE: [1, 3, 5] },
+  MAJ7: { NAME: 'Major 7', DEGREE: [1, 3, 5, 7] },
+  MIN7: { NAME: 'Minor 7', DEGREE: [1, 3, 5, 7] },
+  DOM7: { NAME: 'Dominant 7', DEGREE: [1, 5, 8, 11] },
 };

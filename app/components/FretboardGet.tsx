@@ -1,30 +1,24 @@
 // import Image from 'next/image';
-import { notes, instruments, scaleTypes, tunings } from '@/lib/music';
+import { NOTES, INSTRUMENTS, SCALE_TYPES, TUNINGS } from '@/lib/music';
 
-import s from '@/styles/FretboardGet.module.css';
+import s from '@/styles/GetFretboard.module.css';
 
-// interface FretboardGetProps {
-//   settings: Settings;
-// }
-
-// function getOpenNotesIndex(): number[] {
-//   const tuning = tunings[selectedInstrument].standard; // from user input
-//   return tuning.map((note: string) => selectedNotesArray.indexOf(note));
-// }
-
-export default function FretboardGet({ fretState }) {
-  const numberOfStrings: number = instruments[fretState.instrument].nbStrings;
-  const [fretStart, fretEnd] = fretState.fretRange;
+export default function FretboardGet({ fretboardState }) {
+  const numberOfStrings = INSTRUMENTS[fretboardState.INSTRUMENT].nbStrings;
+  const [fretStart, fretEnd] = fretboardState.range.fret;
   const numberOfFrets = fretEnd - fretStart + 1;
 
-  const selectedKey = fretState.key;
-  const selectedSystem = scaleTypes[fretState.scaleType].degree; // from user input
+  const selectedKey = fretboardState.key;
+  const selectedSystem = SCALE_TYPES[fretboardState.SCALE_TYPES].DEGREES;
 
   const selectedNotesArray =
-    fretState.accidental === 'flat' ? notes.flat : notes.sharp;
+    fretboardState.accidental.toLowerCase() === 'flat'
+      ? NOTES.flat
+      : NOTES.sharp;
 
   function getNoteName(openNoteName: string, fretIndex: number): string {
     const openNoteIndex = selectedNotesArray.indexOf(openNoteName);
+    if (openNoteIndex === -1) return '';
     const noteIndex = (openNoteIndex + fretIndex) % selectedNotesArray.length;
     return selectedNotesArray[noteIndex];
   }
@@ -101,15 +95,15 @@ export default function FretboardGet({ fretState }) {
   ).reverse();
 
   const viewMode = (currentNote, stringIdx) => {
-    switch (fretState.fingerSystem) {
+    switch (fretboardState.fingerSystem) {
       case 'ALL':
         return selectedNotesInSystem.includes(currentNote);
       case '3NPS':
-        return getTnpsPos(fretState.fingerPosition)
+        return getTnpsPos(fretboardState.fingerPosition)
           [stringIdx].map((tnpsIdx) => selectedNotesInSystem[tnpsIdx])
           .includes(currentNote);
       case 'CAGED':
-        return getCAGEDPos(fretState.fingerPosition)
+        return getCAGEDPos(fretboardState.fingerPosition)
           [stringIdx].map((tnpsIdx) => selectedNotesInSystem[tnpsIdx - 1])
           .includes(currentNote);
       default:
@@ -126,7 +120,10 @@ export default function FretboardGet({ fretState }) {
       <div className={s.fretboard}>
         {stringIndexes.map((stringIdx) => {
           const openNoteName =
-            tunings[fretState.instrument][fretState.tuning][stringIdx];
+            TUNINGS[fretboardState.instrument][fretboardState.tuning][
+              stringIdx
+            ];
+          if (!openNoteName) return null;
           const isOpenInSystem = selectedNotesInSystem.includes(openNoteName);
 
           return (

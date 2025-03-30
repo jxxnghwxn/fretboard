@@ -1,11 +1,11 @@
 // import { useState } from 'react';
 
 import {
-  notes,
-  instruments,
-  tunings,
-  scaleTypes,
-  chordTypes,
+  NOTES,
+  INSTRUMENTS,
+  TUNINGS,
+  SCALETYPES,
+  CHORD_TYPES,
 } from '@/lib/music';
 
 // CSS
@@ -16,7 +16,7 @@ import RangeSlider from './RangeSlider';
 
 export default function FretboardSet({ fretState, updateFretState }) {
   const selectedNotesArray =
-    fretState.accidental === 'flat' ? notes.flat : notes.sharp;
+    fretState.accidental === 'flat' ? NOTES.flat : NOTES.sharp;
   const notesArray = [
     ...selectedNotesArray.slice(3),
     ...selectedNotesArray.slice(0, 3),
@@ -36,7 +36,7 @@ export default function FretboardSet({ fretState, updateFretState }) {
               value={fretState.instrument}
               onChange={(e) => updateFretState('instrument', e.target.value)}
             >
-              {Object.entries(instruments).map(([key, { name }]) => (
+              {Object.entries(INSTRUMENTS).map(([key, { name }]) => (
                 <option value={key} key={key}>
                   {name}
                 </option>
@@ -52,7 +52,7 @@ export default function FretboardSet({ fretState, updateFretState }) {
                 updateFretState('tuning', e.target.value);
               }}
             >
-              {Object.entries(tunings[fretState.instrument]).map(
+              {Object.entries(TUNINGS[fretState.instrument]).map(
                 ([tuningKey, tuningValue]) => (
                   <option value={tuningKey} key={tuningKey}>
                     {tuningValue}
@@ -141,7 +141,7 @@ export default function FretboardSet({ fretState, updateFretState }) {
             }
           >
             {Object.entries(
-              fretState.systemType === 'scale' ? scaleTypes : chordTypes
+              fretState.systemType === 'scale' ? SCALETYPES : CHORD_TYPES
             ).map(([key, { name }]) => (
               <option value={key} key={key}>
                 {name}
