@@ -105,6 +105,8 @@ export function fretboardReducer(
       return { ...state, range: action.payload };
     case 'SET_KEY':
       return { ...state, key: action.payload };
+    case 'SET_ACCIDENTAL':
+      return { ...state, accidental: action.payload };
     case 'SET_MUSIC_SYSTEM':
       return { ...state, musicSystem: action.payload };
     case 'SET_SCALE_TYPE':

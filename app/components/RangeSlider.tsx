@@ -3,15 +3,21 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
 function valuetext(value: number) {
-  return `${value}°C`;
+  return `${value}`;
 }
 
-export default function RangeSlider({ settings, updateSetting }) {
-  const [value, setValue] = React.useState<number[]>(settings.fretRange);
+export default function RangeSlider({ fretboardState, updateFretboardState }) {
+  const [value, setValue] = React.useState<number[]>(fretboardState.range.fret);
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
+  const handleChange = (event: Event, newValue: number[]) => {
     setValue(newValue as number[]);
-    updateSetting('fretRange', newValue);
+    updateFretboardState({
+      type: 'SET_RANGE',
+      payload: {
+        string: fretboardState.range.string,
+        fret: newValue as number[],
+      },
+    });
   };
 
   return (

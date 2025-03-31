@@ -1,10 +1,9 @@
 'use client';
 import { useReducer } from 'react';
 
+import SetFretboard from './components/SetFretboard';
 import GetFretboard from './components/GetFretboard';
-import { fretboardReducer, InitFretboardState } from './lib/FretboardSettings';
-
-import FretboardGet from './components/FretboardGet';
+import { fretboardReducer, InitFretboardState } from './lib/FretboardState';
 
 export default function Home() {
   const [fretboardState, updateFretboardState] = useReducer(
@@ -14,8 +13,11 @@ export default function Home() {
 
   return (
     <div>
+      <SetFretboard
+        fretboardState={fretboardState}
+        updateFretboardState={updateFretboardState}
+      />
       <GetFretboard fretboardState={fretboardState} />
-      {/* <FretboardGet fretboardState={fretboardState} /> */}
     </div>
   );
 }

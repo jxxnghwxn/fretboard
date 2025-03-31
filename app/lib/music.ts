@@ -9,26 +9,26 @@ export const DEGREES = {
 };
 
 export const INSTRUMENTS = {
-  GUITAR_6S: { NAME: 'Guitar 6s', nbStrings: 6 },
-  GUITAR_7S: { NAME: 'Guitar 7s', nbStrings: 7 },
-  BASS_4S: { NAME: 'Bass 4s', nbStrings: 4 },
-  BASS_5S: { NAME: 'Bass 5s', nbStrings: 5 },
+  GUITAR_6S: { NAME: 'Guitar', nbStrings: 6 },
+  GUITAR_7S: { NAME: '7-string Guitar', nbStrings: 7 },
+  BASS_4S: { NAME: 'Bass', nbStrings: 4 },
+  BASS_5S: { NAME: '5-string Bass', nbStrings: 5 },
 };
 
 export const TUNINGS = {
   GUITAR_6S: {
-    STANDARD: ['E', 'A', 'D', 'G', 'B', 'E'],
-    DROP_D: ['D', 'A', 'D', 'G', 'A', 'D'],
+    STANDARD: { NAME: 'Standard', TUNING: ['E', 'A', 'D', 'G', 'B', 'E'] },
+    DROP_D: { NAME: 'Drop D', TUNING: ['D', 'A', 'D', 'G', 'A', 'D'] },
   },
   GUITAR_7S: {
-    STANDARD: ['B', 'E', 'A', 'D', 'G', 'B', 'E'],
+    STANDARD: { NAME: 'Standard', TUNING: ['B', 'E', 'A', 'D', 'G', 'B', 'E'] },
   },
   BASS_4S: {
-    STANDARD: ['E', 'A', 'D', 'G'],
+    STANDARD: { NAME: 'Standard', TUNING: ['E', 'A', 'D', 'G'] },
   },
   BASS_5S: {
-    STANDARD: ['B', 'E', 'A', 'D', 'G'],
-    STANDARD_HIGH: ['E', 'A', 'D', 'G', 'C'],
+    STANDARD: { NAME: 'Standard', TUNING: ['B', 'E', 'A', 'D', 'G'] },
+    STANDARD_HIGH: { NAME: 'Standard High', TUNING: ['E', 'A', 'D', 'G', 'C'] },
   },
 };
 

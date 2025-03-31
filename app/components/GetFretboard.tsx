@@ -24,7 +24,7 @@ function GetFretboard({ fretboardState }) {
   const selectedNotesArray = NOTES[selectedAccidental];
 
   function calculateNote(stringIdx: number, fretIdx: number): string {
-    const openNoteArray = TUNINGS[selectedInstrument][selectedTuning];
+    const openNoteArray = TUNINGS[selectedInstrument][selectedTuning].TUNING;
     const openNoteName = openNoteArray[openNoteArray.length - 1 - stringIdx];
     const openNoteIdx = selectedNotesArray.indexOf(openNoteName);
     if (openNoteIdx === -1) {
@@ -55,7 +55,7 @@ function GetFretboard({ fretboardState }) {
         <div key={stringIdx} className={s.string}>
           {string.map((noteInfo, fretIdx) => (
             <div key={fretIdx} className={s.fret}>
-              {noteInfo.noteName}
+              <div className={s.noteBase}>{noteInfo.noteName}</div>
             </div>
           ))}
         </div>
