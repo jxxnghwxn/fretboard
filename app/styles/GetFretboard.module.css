@@ -66,13 +66,13 @@
 }
 
 /* 스케일에 속한 노트 */
-.fret.inSystem .noteBase {
+.fret.inIntervals .noteBase {
   background-color: #3d6cdb;
   color: rgb(255, 255, 255);
 }
 
 /* 스케일에 속하지 않은 노트 */
-.fret:not(.inSystem) .noteBase {
+.fret:not(.inIntervals) .noteBase {
   z-index: 4;
   background-color: #4c5159;
   color: rgb(65, 52, 52);

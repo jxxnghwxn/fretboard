@@ -1,10 +1,12 @@
 interface NoteInfo {
   string: number;
   fret: number;
-  note: string;
+  noteName: string;
+  noteDegree: string;
+  isInIntervals?: boolean;
 
-  isInScale: boolean;
-  interval: string;
+  noteTension?: string;
+  test?: string;
 }
 
 interface FretboardState {

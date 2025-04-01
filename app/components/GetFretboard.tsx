@@ -1,53 +1,78 @@
-import { NOTES, INSTRUMENTS, SCALE_TYPES, TUNINGS } from '@/lib/music';
+import { NOTES, DEGREES, TUNINGS, SCALE_TYPES, CHORD_TYPES } from '@/lib/music';
 
+import type { NoteInfo } from '@/lib/FretboardState';
 import s from '@/styles/GetFretboard.module.css';
 
 function GetFretboard({ fretboardState }) {
-  const [stringStart, stringEnd] = fretboardState.range.string;
-  const [fretStart, fretEnd] = fretboardState.range.fret;
-  const numberOfStrings = stringEnd - stringStart + 1;
-  const numberOfFrets = fretEnd - fretStart + 1;
+  const {
+    instrument: selectedInstrument,
+    tuning: selectedTuning,
+    range: {
+      string: [stringStart, stringEnd],
+      fret: [fretStart, fretEnd],
+    },
 
-  const selectedInstrument = fretboardState.instrument;
-  const selectedTuning = fretboardState.tuning;
-  const selectedKey = fretboardState.key;
-  const selectedAccidental = fretboardState.accidental;
-  const selectedMusicSystem = fretboardState.musicSystem;
-  const selectedScaleType = fretboardState.scaleType;
-  const selectedChordType = fretboardState.chordType;
+    key: selectedKey,
+    accidental: selectedAccidental,
+    musicSystem: selectedMusicSystem,
+    scaleType: selectedScaleType,
+    chordType: selectedChordType,
 
-  const fingerSystem = fretboardState.fingerSystem;
-  const fingerPosition = fretboardState.fingerPosition;
-  const displayMode = fretboardState.display.mode;
+    fingerSystem: selectedFingerSystem,
+    fingerPosition: selectedFingerPosition,
 
-  const selectedSystem = SCALE_TYPES[selectedScaleType].DEGREE;
-  const selectedNotesArray = NOTES[selectedAccidental];
+    display: { mode: selectedDisplayMode },
+  } = fretboardState;
 
-  function calculateNote(stringIdx: number, fretIdx: number): string {
+  const nbStrings = stringEnd - stringStart + 1;
+  const nbFrets = fretEnd - fretStart + 1;
+  const selectedNotation = NOTES[selectedAccidental];
+  const selectedIntervals = (() => {
+    switch (selectedMusicSystem) {
+      case 'SCALE':
+        return SCALE_TYPES[selectedScaleType].DEGREE;
+      case 'CHORD':
+        return CHORD_TYPES[selectedChordType].DEGREE;
+      default:
+        return [];
+    }
+  })();
+
+  function createNoteInfo(stringIdx: number, fretIdx: number): NoteInfo {
+    // Calculate note name
     const openNoteArray = TUNINGS[selectedInstrument][selectedTuning].TUNING;
     const openNoteName = openNoteArray[openNoteArray.length - 1 - stringIdx];
-    const openNoteIdx = selectedNotesArray.indexOf(openNoteName);
-    if (openNoteIdx === -1) {
-      return '';
-    }
-    const noteName = (openNoteIdx + fretIdx) % selectedNotesArray.length;
-    return selectedNotesArray[noteName];
+    const openNoteIdx = selectedNotation.indexOf(openNoteName);
+    if (openNoteIdx === -1) return null;
+    const noteNameIdx = (openNoteIdx + fretIdx) % 12;
+    const noteName = selectedNotation[noteNameIdx];
+
+    // Calculate note degree
+    const rootNoteIdx = selectedNotation.indexOf(selectedKey);
+    if (rootNoteIdx === -1) return null;
+    const noteDegreeIdx = (noteNameIdx - rootNoteIdx + 12) % 12;
+    const noteDegree = DEGREES[selectedAccidental][noteDegreeIdx];
+
+    const isInIntervals = selectedIntervals.includes(noteDegreeIdx);
+
+    return {
+      string: stringIdx + 1,
+      fret: fretIdx + 1,
+      noteName,
+      noteDegree,
+      isInIntervals,
+    };
   }
 
-  const fretboard = createFretboard();
-
   function createFretboard() {
-    const board = Array.from({ length: numberOfStrings }, (_, stringIdx) =>
-      Array.from({ length: numberOfFrets }, (_, fretIdx) => {
-        return {
-          string: stringIdx + 1,
-          fret: fretIdx + 1,
-          noteName: calculateNote(stringIdx, fretIdx),
-        };
-      })
+    const board = Array.from({ length: nbStrings }, (_, stringIdx) =>
+      Array.from({ length: nbFrets }, (_, fretIdx) =>
+        createNoteInfo(stringIdx, fretIdx)
+      )
     );
     return board;
   }
+  const fretboard = createFretboard();
 
   return (
     <div className={s.fretboard}>
@@ -55,7 +80,13 @@ function GetFretboard({ fretboardState }) {
         <div key={stringIdx} className={s.string}>
           {string.map((noteInfo, fretIdx) => (
             <div key={fretIdx} className={s.fret}>
-              <div className={s.noteBase}>{noteInfo.noteName}</div>
+              <div
+                className={`${s.noteBase} ${
+                  noteInfo.isInIntervals ? s.inIntervals : ''
+                }`}
+              >
+                {noteInfo.noteDegree}
+              </div>
             </div>
           ))}
         </div>
