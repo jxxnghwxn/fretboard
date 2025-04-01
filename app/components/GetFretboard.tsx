@@ -53,13 +53,14 @@ function GetFretboard({ fretboardState }) {
     const noteDegreeIdx = (noteNameIdx - rootNoteIdx + 12) % 12;
     const noteDegree = DEGREES[selectedAccidental][noteDegreeIdx];
 
-    const isInIntervals = selectedIntervals.includes(noteDegreeIdx);
+    const isInIntervals = selectedIntervals.includes(noteDegreeIdx + 1);
 
     return {
       string: stringIdx + 1,
       fret: fretIdx + 1,
       noteName,
       noteDegree,
+      noteDegreeIdx,
       isInIntervals,
     };
   }
@@ -80,12 +81,14 @@ function GetFretboard({ fretboardState }) {
         <div key={stringIdx} className={s.string}>
           {string.map((noteInfo, fretIdx) => (
             <div key={fretIdx} className={s.fret}>
-              <div
-                className={`${s.noteBase} ${
-                  noteInfo.isInIntervals ? s.inIntervals : ''
-                }`}
-              >
-                {noteInfo.noteDegree}
+              <div className={s.noteContainer}>
+                <div
+                  className={`${s.noteItem} ${
+                    noteInfo.isInIntervals ? s.inIntervals : ''
+                  }`}
+                >
+                  {noteInfo.noteDegree}
+                </div>
               </div>
             </div>
           ))}

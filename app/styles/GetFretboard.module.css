@@ -55,30 +55,39 @@
 }
 
 /* 모든 노트 공통 스타일 */
-.noteBase {
+
+.noteContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.noteItem {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 50%;
   display: flex;
+  align-items: center;
   justify-content: center;
   align-items: center;
   z-index: 3;
 }
 
 /* 스케일에 속한 노트 */
-.fret.inIntervals .noteBase {
+.noteItem.inIntervals {
   background-color: #3d6cdb;
-  color: rgb(255, 255, 255);
+  color: rgb(162, 50, 50);
 }
 
 /* 스케일에 속하지 않은 노트 */
-.fret:not(.inIntervals) .noteBase {
+.noteItem:not(.inIntervals) {
   z-index: 4;
   background-color: #4c5159;
   color: rgb(65, 52, 52);
 }
 /* 최종 보여주는 노트 */
-.fret.inView .noteBase {
+.noteItem.inView {
   background-color: #2f5bc2;
   color: rgb(255, 255, 255);
 }
