@@ -76,24 +76,26 @@ function GetFretboard({ fretboardState }) {
   const fretboard = createFretboard();
 
   return (
-    <div className={s.fretboard}>
-      {fretboard.map((string, stringIdx) => (
-        <div key={stringIdx} className={s.string}>
-          {string.map((noteInfo, fretIdx) => (
-            <div key={fretIdx} className={s.fret}>
-              <div className={s.noteContainer}>
-                <div
-                  className={`${s.noteItem} ${
-                    noteInfo.isInIntervals ? s.inIntervals : ''
-                  }`}
-                >
-                  {noteInfo.noteDegree}
+    <div className={s.fretboard__container}>
+      <div className={s.fretboard}>
+        {fretboard.map((string, stringIdx) => (
+          <div key={stringIdx} className={s.string}>
+            {string.map((noteInfo, fretIdx) => (
+              <div key={fretIdx} className={s.fret}>
+                <div className={s.note__container}>
+                  <div
+                    className={`${s.note__item} ${
+                      noteInfo.isInIntervals ? s.inIntervals : ''
+                    }`}
+                  >
+                    {noteInfo.noteDegree}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ))}
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
